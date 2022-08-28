@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<unistd.h>
+#include<funktionen.h>
+#include<math.h>
 
 const char VERSIONSNR[] = "0.1";
 
@@ -34,6 +36,21 @@ int main(int argc, char* argv[]){
 		printf("Anzahl Samples und Phase -n und -p sind verpflichtend\n");
 		exit(1);
 	}
+
+	const int tableSize = anzahl;
+	const char *fileName = "wertetabelle.txt";
+
+	FILE *file;
+	file = fopen(fileName, "w");
+	if (file == NULL){
+		printf("unable to open file\n");
+		exit(2);
+	}
+	for (int x=0; x < tableSize; x++){
+		float t = x*bereich*M_PI/tableSize;
+		fprintf(file, "%f\n", rectfct(t)*sinusfct(t)*triangfct(t)*sawtooth(t));
+	}
+	fclose(file);
 	return 0;
 }
 
