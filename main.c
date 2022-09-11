@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
 	}
 	for (int x=0; x < tableSize; x++){
 		float t = x*bereich*M_PI/tableSize;
-		fprintf(file, "%f\n", rectfct(t)+sinusfct(t)+triangfct(t)+sawtooth(t));
+		fprintf(file, "%i\n", (int)(rectfct(t)+sinusfct(t)+triangfct(t)+sawtooth(t)));
 	}
 	fclose(file);
 	return 0;
